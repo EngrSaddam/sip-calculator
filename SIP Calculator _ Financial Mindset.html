@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>SIP Calculator | Financial Mindset</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Noto+Sans+Bengali:wght@400;500;600&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#fff;--surface:#fff;--tint:#f5f8f6;--ink:#12261c;--muted:#5b6b62;--green:#0f4a31;--green-2:#176b49;--gold:#b8963e;--gold-soft:#f3ead3;--line:#e3e9e5;--shadow:0 1px 2px rgba(15,74,49,.06),0 8px 24px -12px rgba(15,74,49,.18);
+ box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0d1511;--surface:#141f19;--tint:#101a15;--ink:#e8efea;--muted:#9fb0a6;--green:#6fcf9f;--green-2:#8be0b3;--gold:#d4b25e;--gold-soft:#2a2514;--line:#243229;--shadow:none}}
+:root[data-theme="dark"]{--bg:#0d1511;--surface:#141f19;--tint:#101a15;--ink:#e8efea;--muted:#9fb0a6;--green:#6fcf9f;--green-2:#8be0b3;--gold:#d4b25e;--gold-soft:#2a2514;--line:#243229;--shadow:none}
+html{scroll-padding-top:env(safe-area-inset-top,0px);height:100%}
+*{box-sizing:border-box}
+body{margin:0;min-height:100%;background:var(--bg);color:var(--ink);font:16px/1.6 "Inter","Noto Sans Bengali",system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+html[lang="bn"] body{line-height:1.75}
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px;border-radius:6px}
+.wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+header{border-bottom:1px solid var(--line)}
+.bar{display:flex;align-items:center;justify-content:space-between;height:64px}
+.logo{font-family:"Playfair Display",Georgia,serif;font-weight:700;font-size:21px;color:var(--green);display:flex;align-items:center;gap:10px}
+.logo i{width:9px;height:9px;border-radius:50%;background:var(--gold);display:inline-block}
+.lang{display:flex;border:1px solid var(--line);border-radius:999px;padding:3px;background:var(--tint)}
+.lang button{border:0;background:transparent;color:var(--muted);font:inherit;font-size:14px;font-weight:500;padding:5px 14px;border-radius:999px;cursor:pointer}
+.lang button[aria-pressed="true"]{background:var(--green);color:var(--bg)}
+:root:not([data-theme="dark"]) .lang button[aria-pressed="true"]{color:#fff}
+.hero{padding:36px 0 22px}
+.hero h1{font-family:"Playfair Display",Georgia,serif;font-size:clamp(30px,5vw,44px);line-height:1.2;margin:0;color:var(--green)}
+html[lang="bn"] .hero h1{font-family:"Noto Sans Bengali",sans-serif;font-weight:600}
+.rule{width:56px;height:3px;background:var(--gold);border-radius:2px;margin:16px 0 12px}
+.hero p{margin:0;color:var(--muted)}
+.layout{display:grid;grid-template-columns:370px 1fr;gap:22px;align-items:start;padding-bottom:64px}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:22px;box-shadow:var(--shadow)}
+#inp{position:sticky;top:16px}
+.fld{margin-top:22px}
+.fh{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:12px;font-size:15px;font-weight:500}
+.fv{display:flex;align-items:center;gap:6px;border:1px solid var(--line);border-radius:10px;padding:4px 10px;background:var(--tint)}
+.fv:focus-within{border-color:var(--gold)}
+.fv input{width:100px;border:0;background:transparent;color:var(--ink);font:inherit;font-weight:600;text-align:right;outline:0}
+.fv em{font-style:normal;color:var(--muted);font-size:14px}
+.rg{width:100%;accent-color:var(--green)}
+.seg{display:flex;border:1px solid var(--line);border-radius:10px;padding:3px;background:var(--tint)}
+.seg button{flex:1;border:0;background:transparent;color:var(--muted);font:inherit;font-size:14px;font-weight:500;padding:8px;border-radius:8px;cursor:pointer}
+.seg button[aria-pressed="true"]{background:var(--green);color:var(--bg)}
+:root:not([data-theme="dark"]) .seg button[aria-pressed="true"]{color:#fff}
+.sw{display:flex;align-items:center;gap:12px;margin-top:26px;font-size:15px;font-weight:500;cursor:pointer}
+.sw input{position:absolute;opacity:0;width:1px;height:1px}
+.trk{width:42px;height:24px;border-radius:999px;background:var(--line);position:relative;flex:none;transition:background .15s}
+.trk::after{content:"";position:absolute;top:3px;left:3px;width:18px;height:18px;border-radius:50%;background:#fff;transition:transform .15s}
+.sw input:checked+.trk{background:var(--green)}
+.sw input:checked+.trk::after{transform:translateX(18px)}
+.sw input:focus-visible+.trk{outline:2px solid var(--gold);outline-offset:3px}
+.inf.off{opacity:.55}
+.sub{margin-top:6px;padding:14px;border:1px solid var(--line);border-radius:12px;background:var(--tint)}
+.sub .fld{margin-top:16px}
+.big{background:var(--green);color:var(--bg);border-radius:12px;padding:18px 20px}
+:root:not([data-theme="dark"]) .big{color:#fff}
+.big span{display:block;font-size:14px;opacity:.85}
+.big b{display:block;font-family:"Playfair Display",Georgia,serif;font-size:clamp(28px,5vw,38px);line-height:1.25}
+html[lang="bn"] .big b{font-family:"Noto Sans Bengali",sans-serif}
+.big small{opacity:.8;font-size:13px}
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:14px 0 4px}
+.stats div{border:1px solid var(--line);border-radius:12px;padding:12px 14px}
+.stats span{display:block;color:var(--muted);font-size:13px}
+.stats b{font-size:17px}
+.stats .g b{color:var(--green-2)}
+h3.cap{font-size:15px;margin:0 0 4px;font-weight:600}
+.cc{margin-top:26px}
+.hint{color:var(--muted);font-size:13px;margin:22px 0 0}
+.ch{display:block;width:100%;height:auto}
+.hit{fill:transparent;cursor:crosshair}
+.hit:hover{fill:var(--gold);fill-opacity:.2}
+.seg2{cursor:pointer;transition:stroke-width .12s}
+.seg2:hover{stroke-width:30}
+.lg{display:flex;gap:16px;flex-wrap:wrap;margin-top:6px;font-size:13px;color:var(--muted)}
+.lg u{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:6px;text-decoration:none}
+.adv{margin-top:26px}
+.adv ul{list-style:none;margin:10px 0 0;padding:0;display:grid;gap:10px}
+.adv li{border-left:3px solid var(--gold);background:var(--tint);border-radius:0 10px 10px 0;padding:10px 14px;font-size:15px}
+#tip{position:fixed;z-index:50;left:0;top:0;opacity:0;pointer-events:none;background:var(--ink);color:var(--bg);border-radius:10px;padding:8px 12px;font-size:13px;line-height:1.5;max-width:240px;transition:opacity .1s}
+.fw{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.soc{display:flex;gap:18px}
+.soc a{display:inline-flex;align-items:center;gap:7px;color:var(--green);font-weight:500;text-decoration:none}
+.soc a:hover{color:var(--gold)}
+.soc svg{width:18px;height:18px;fill:currentColor}
+footer{border-top:1px solid var(--line);padding:20px 0 28px;color:var(--muted);font-size:14px}
+@media (max-width:900px){.layout{grid-template-columns:1fr}#inp{position:static}}
+@media (max-width:560px){.wrap{padding:0 14px}.panel{padding:16px}.hero{padding-top:26px}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<header><div class="wrap bar">
+ <div class="logo"><i></i>Financial Mindset</div>
+ <div class="lang" role="group" aria-label="Language"><button type="button" data-l="en" aria-pressed="true">English</button><button type="button" data-l="bn" aria-pressed="false">বাংলা</button></div>
+</div></header>
+<main class="wrap">
+ <section class="hero"><h1 id="h1"></h1><div class="rule"></div><p id="sub"></p></section>
+ <div class="layout"><aside class="panel" id="inp"></aside><section class="panel" id="out" aria-live="polite"></section></div>
+</main>
+<footer><div class="wrap fw"><span id="foot"></span><span class="soc"><a href="https://www.facebook.com/FinancialMindset101" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.5 21v-8h2.7l.4-3.2h-3.1V7.8c0-.9.3-1.5 1.6-1.5h1.7V3.4c-.3 0-1.3-.1-2.4-.1-2.4 0-4 1.5-4 4.1v2.4H7.6V13h2.8v8h3.1z"/></svg>Facebook</a><a href="https://www.youtube.com/@engr.saddam43" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21.6 7.2a2.5 2.5 0 0 0-1.8-1.8C18.3 5 12 5 12 5s-6.3 0-7.8.4A2.5 2.5 0 0 0 2.4 7.2C2 8.7 2 12 2 12s0 3.3.4 4.8a2.5 2.5 0 0 0 1.8 1.8C5.7 19 12 19 12 19s6.3 0 7.8-.4a2.5 2.5 0 0 0 1.8-1.8c.4-1.5.4-4.8.4-4.8s0-3.3-.4-4.8zM10 15V9l5.2 3L10 15z"/></svg>YouTube</a></span></div></footer>
+<div id="tip" role="tooltip"></div>
+<script>
+var D={
+en:{title:'SIP Calculator',sub:'Plan your monthly investment and see what it can grow into. Amounts in BDT (৳).',mode0:'Without inflation',mode1:'With inflation',p:'Monthly SIP',l:'Initial investment (optional)',r:'Expected annual return',n:'Time period',yr:'years',step:'Increase SIP every year',st0:'By %',st1:'By amount',sv:'Yearly increase',f:'Expected inflation rate',mat:'Maturity value',inv:'Total invested',ret:'Estimated returns',real:'Value in today’s money',lastp:'Monthly SIP in final year',cr:'Crore',lk:'Lakh',crs:'Cr',lks:'L',ks:'K',yearw:'Year',val:'Value',c1:'Wealth growth',c2:'Invested vs returns',c3:'Yearly investment and growth',c4:'If the return rate changes',c5a:'Nominal vs real value',c5b:'Years to reach milestones',advh:'Advice on your result',hint:'Hover or tap any chart for details.',nom:'Nominal value',rl:'Real value',ct:'Invested',gr:'Growth',reach:'Reached in',yrs:'years',nomile:'No milestone is reached in this period.',loss:'Buying power lost',foot:'For education only. Not financial advice.',
+a1h:'A {r}% yearly return is ambitious to sustain for long. Treat it as a best case; at {r2}% you would reach about {v2}.',
+a1n:'{r}% is a reasonable planning figure, but real returns are uneven. At {r2}% (two points lower) you would still reach about {v2}.',
+a2s:'With under 5 years, market swings can hurt badly. Share-based SIPs usually suit 7 years or more.',
+a2l:'Returns make up {s}% of your final value. Time does most of the work, so staying invested matters more than timing the market.',
+a3:'Stopping 2 years early would cut your final value to {v}, which is {d} less. Keep going where you can.',
+a4n:'Raising your SIP by 10% every year would lift the final value to {v}, which is {d} more, roughly in step with income growth.',
+a4y:'Your yearly step-up adds about {d} compared with a flat SIP. In the final year you invest {lp} a month.',
+a5y:'After {f}% inflation, {v} at maturity buys about what {rv} buys today ({q}% of the nominal amount).',
+a5n:'Switch to “With inflation” to see what this amount is worth in today’s money.',
+a6:'This is an estimate, not a guarantee or financial advice. Keep an emergency fund first and choose investments that match your risk.'},
+bn:{title:'এসআইপি ক্যালকুলেটর',sub:'মাসিক বিনিয়োগের পরিকল্পনা করুন এবং দেখুন তা কতটা বাড়তে পারে। সব অঙ্ক টাকায় (৳)।',mode0:'মূল্যস্ফীতি ছাড়া',mode1:'মূল্যস্ফীতিসহ',p:'মাসিক এসআইপি',l:'প্রাথমিক বিনিয়োগ (ঐচ্ছিক)',r:'প্রত্যাশিত বার্ষিক রিটার্ন',n:'সময়কাল',yr:'বছর',step:'প্রতি বছর এসআইপি বাড়ান',st0:'শতাংশে',st1:'টাকায়',sv:'বার্ষিক বৃদ্ধি',f:'প্রত্যাশিত মূল্যস্ফীতি',mat:'মেয়াদ শেষে মোট মূল্য',inv:'মোট বিনিয়োগ',ret:'আনুমানিক রিটার্ন',real:'আজকের মূল্যে',lastp:'শেষ বছরে মাসিক এসআইপি',cr:'কোটি',lk:'লক্ষ',crs:'কো',lks:'ল',ks:'হা',yearw:'বছর',val:'মূল্য',c1:'সম্পদের প্রবৃদ্ধি',c2:'বিনিয়োগ ও রিটার্নের অনুপাত',c3:'বছরভিত্তিক বিনিয়োগ ও প্রবৃদ্ধি',c4:'রিটার্নের হার বদলালে',c5a:'নামমাত্র ও প্রকৃত মূল্য',c5b:'লক্ষ্যমাত্রা ছুঁতে কত বছর',advh:'আপনার ফলাফল নিয়ে পরামর্শ',hint:'বিস্তারিত দেখতে যেকোনো চার্টের উপর হোভার করুন বা ট্যাপ করুন।',nom:'নামমাত্র মূল্য',rl:'প্রকৃত মূল্য',ct:'বিনিয়োগ',gr:'প্রবৃদ্ধি',reach:'পৌঁছাতে সময়',yrs:'বছর',nomile:'এই সময়ে কোনো লক্ষ্যমাত্রা ছোঁয়া যাচ্ছে না।',loss:'ক্রয়ক্ষমতা হ্রাস',foot:'শুধু শিক্ষামূলক উদ্দেশ্যে। আর্থিক পরামর্শ নয়।',
+a1h:'বছরে {r}% রিটার্ন দীর্ঘমেয়াদে ধরে রাখা কঠিন। এটাকে সর্বোত্তম পরিস্থিতি ভাবুন; {r2}% হলে মোট প্রায় {v2} হবে।',
+a1n:'{r}% একটি যুক্তিসঙ্গত ধারণা, তবে বাস্তবে রিটার্ন সবসময় সমান থাকে না। রিটার্ন ২ শতাংশ কম হলে ({r2}%) আপনি প্রায় {v2} পাবেন।',
+a2s:'৫ বছরের কম সময়ে বাজারের ওঠানামায় বড় ক্ষতি হতে পারে। শেয়ারভিত্তিক এসআইপি সাধারণত ৭ বছর বা বেশি সময়ের জন্য ভালো।',
+a2l:'চূড়ান্ত মূল্যের {s}% আসছে রিটার্ন থেকে। সময়ই সবচেয়ে বেশি কাজ করে, তাই বাজার বুঝে ঢোকা-বের হওয়ার চেয়ে বিনিয়োগে টিকে থাকা বেশি গুরুত্বপূর্ণ।',
+a3:'২ বছর আগে থামলে চূড়ান্ত মূল্য কমে {v} হবে, অর্থাৎ {d} কম। সম্ভব হলে চালিয়ে যান।',
+a4n:'প্রতি বছর এসআইপি ১০% বাড়ালে চূড়ান্ত মূল্য হবে {v}, অর্থাৎ {d} বেশি। এটি আয় বৃদ্ধির সঙ্গে মানানসই।',
+a4y:'বার্ষিক বৃদ্ধি থাকায় ফ্ল্যাট এসআইপির চেয়ে প্রায় {d} বেশি হচ্ছে। শেষ বছরে মাসে {lp} বিনিয়োগ করতে হবে।',
+a5y:'{f}% মূল্যস্ফীতির পর মেয়াদ শেষের {v} আজকের প্রায় {rv}-এর সমান ক্রয়ক্ষমতা দেবে (নামমাত্র অঙ্কের {q}%)।',
+a5n:'আজকের মূল্যে এই অঙ্কের মান দেখতে “মূল্যস্ফীতিসহ” অপশন বেছে নিন।',
+a6:'এটি একটি অনুমান, নিশ্চয়তা বা আর্থিক পরামর্শ নয়। আগে জরুরি তহবিল রাখুন এবং নিজের ঝুঁকির সঙ্গে মানানসই বিনিয়োগ বেছে নিন।'}
+};
+var lang='en';try{var s0=localStorage.getItem('fm-lang');if(s0==='bn'||s0==='en')lang=s0}catch(e){}
+var S={inf:false,p:10000,l:0,r:12,n:10,step:false,st:'pct',sv:10,f:8};
+var LIM={p:[100,1e7],l:[0,1e10],r:[1,30],n:[1,40],f:[0,25]};
+function lim(k){return k==='sv'?(S.st==='pct'?[0,50]:[0,1e6]):LIM[k]}
+function T(){return D[lang]}
+function num(n,d){return n.toLocaleString(lang==='bn'?'bn-BD':'en-IN',{minimumFractionDigits:0,maximumFractionDigits:d})}
+function sh(n){var t=T(),a=Math.abs(n),s=n<0?'−':'';if(a>=1e7)return s+'৳'+num(a/1e7,2)+' '+t.cr;if(a>=1e5)return s+'৳'+num(a/1e5,2)+' '+t.lk;return s+'৳'+num(a,0)}
+function full(n){return '৳'+num(Math.round(n),0)}
+function ay(v){var t=T();if(v>=1e7)return num(v/1e7,v>=1e8?0:1)+t.crs;if(v>=1e5)return num(v/1e5,v>=1e6?0:1)+t.lks;if(v>=1e3)return num(v/1e3,0)+t.ks;return num(v,0)}
+function fill(s,o){return s.replace(/\{(\w+)\}/g,function(_,k){return o[k]})}
+
+function sim(o){var rm=o.r/1200,bal=o.l,inv=o.l,B=[o.l],I=[o.l],C=[0],M=[o.l],cur=o.p;
+ for(var y=0;y<o.n;y++){cur=!o.step?o.p:o.st==='pct'?o.p*Math.pow(1+o.sv/100,y):o.p+o.sv*y;var c=0;
+  for(var m=0;m<12;m++){bal=(bal+cur)*(1+rm);inv+=cur;c+=cur;M.push(bal)}
+  B.push(bal);I.push(inv);C.push(c)}
+ return {N:o.n,bal:B,inv:I,con:C,mo:M,last:cur}}
+function sm(ov){var o={p:S.p,l:S.l,r:S.r,n:Math.round(S.n),step:S.step,st:S.st,sv:S.sv};for(var k in ov)o[k]=ov[k];return sim(o)}
+
+var W=340,H=176,PL=46,PR=8,PT=8,PB=24,pw=W-PL-PR,ph=H-PT-PB;
+function svg(s){return '<svg class="ch" viewBox="0 0 '+W+' '+H+'" role="img">'+s+'</svg>'}
+function ax(mx,N,off,f){f=f||ay;var s='',k,i;
+ for(k=0;k<=3;k++){var y=PT+ph-ph*k/3;s+='<line x1="'+PL+'" x2="'+(W-PR)+'" y1="'+y+'" y2="'+y+'" stroke="var(--line)"/><text x="'+(PL-4)+'" y="'+(y+3)+'" text-anchor="end" font-size="9" fill="var(--muted)">'+f(mx*k/3)+'</text>'}
+ if(N>0){var st=Math.max(1,Math.ceil(N/6));for(i=off?1:0;i<=N;i+=st)s+='<text x="'+(PL+(i-(off?.5:0))/N*pw).toFixed(1)+'" y="'+(H-8)+'" text-anchor="middle" font-size="9" fill="var(--muted)">'+i+'</text>'}
+ return s}
+function hit(x,w,tip){return '<rect class="hit" x="'+x.toFixed(1)+'" y="'+PT+'" width="'+w.toFixed(1)+'" height="'+ph+'" data-tip="'+tip+'"/>'}
+function leg(p){return '<div class="lg">'+p.map(function(q){return '<span><u style="background:'+q[0]+'"></u>'+q[1]+'</span>'}).join('')+'</div>'}
+function tipY(i,R,RB){var t=T(),s='<b>'+t.yearw+' '+i+'</b><br>'+t.inv+': '+sh(R.inv[i])+'<br>'+t.ret+': '+sh(R.bal[i]-R.inv[i])+'<br>'+t.val+': '+sh(R.bal[i]);if(S.inf)s+='<br>'+t.rl+': '+sh(RB[i]);return s}
+
+function c1(R,RB){var N=R.N,mx=R.bal[N]*1.02||1,X=function(i){return PL+i/N*pw},Y=function(v){return PT+ph-v/mx*ph},hi=[],lo=[],s=ax(mx,N),i;
+ for(i=0;i<=N;i++){hi.push(X(i).toFixed(1)+','+Y(R.bal[i]).toFixed(1));lo.push(X(i).toFixed(1)+','+Y(R.inv[i]).toFixed(1))}
+ s+='<polygon points="'+lo.join(' ')+' '+X(N)+','+Y(0)+' '+X(0)+','+Y(0)+'" fill="var(--green)"/><polygon points="'+hi.join(' ')+' '+lo.slice().reverse().join(' ')+'" fill="var(--gold)"/>';
+ var w=pw/N;for(i=0;i<=N;i++)s+=hit(Math.max(PL,X(i)-w/2),w,tipY(i,R,RB));
+ return svg(s)}
+function c2(R){var t=T(),N=R.N,inv=R.inv[N],g=R.bal[N]-inv,tot=R.bal[N],f=tot>0?inv/tot:1,C=2*Math.PI*52,a=f*C,b=(1-f)*C;
+ var s='<g transform="rotate(-90 90 88)"><circle class="seg2" cx="90" cy="88" r="52" fill="none" stroke="var(--green)" stroke-width="24" stroke-dasharray="'+a.toFixed(1)+' '+(C-a).toFixed(1)+'" data-tip="'+t.inv+': '+sh(inv)+' ('+num(f*100,1)+'%)"/><circle class="seg2" cx="90" cy="88" r="52" fill="none" stroke="var(--gold)" stroke-width="24" stroke-dasharray="'+b.toFixed(1)+' '+(C-b).toFixed(1)+'" stroke-dashoffset="'+(-a).toFixed(1)+'" data-tip="'+t.ret+': '+sh(g)+' ('+num((1-f)*100,1)+'%)"/></g>';
+ s+='<text x="90" y="87" text-anchor="middle" font-size="18" font-weight="600" fill="var(--ink)">'+num((1-f)*100,0)+'%</text><text x="90" y="102" text-anchor="middle" font-size="9" fill="var(--muted)">'+t.ret+'</text>';
+ s+='<rect x="176" y="60" width="10" height="10" rx="3" fill="var(--green)"/><text x="192" y="69" font-size="11" fill="var(--muted)">'+t.inv+'</text><text x="192" y="84" font-size="12" font-weight="600" fill="var(--ink)">'+sh(inv)+'</text>';
+ s+='<rect x="176" y="98" width="10" height="10" rx="3" fill="var(--gold)"/><text x="192" y="107" font-size="11" fill="var(--muted)">'+t.ret+'</text><text x="192" y="122" font-size="12" font-weight="600" fill="var(--ink)">'+sh(g)+'</text>';
+ return svg(s)}
+function c3(R){var t=T(),N=R.N,mx=1,gs=[],i;for(i=1;i<=N;i++){gs[i]=R.bal[i]-R.bal[i-1]-R.con[i];mx=Math.max(mx,R.con[i]+gs[i])}mx*=1.05;
+ var s=ax(mx,N,1),bw=pw/N;
+ for(i=1;i<=N;i++){var x=PL+(i-1)*bw,hc=R.con[i]/mx*ph,hg=Math.max(0,gs[i])/mx*ph;
+  s+='<rect x="'+(x+bw*.15).toFixed(1)+'" y="'+(PT+ph-hc).toFixed(1)+'" width="'+(bw*.7).toFixed(1)+'" height="'+hc.toFixed(1)+'" fill="var(--green)"/><rect x="'+(x+bw*.15).toFixed(1)+'" y="'+(PT+ph-hc-hg).toFixed(1)+'" width="'+(bw*.7).toFixed(1)+'" height="'+hg.toFixed(1)+'" fill="var(--gold)"/>';
+  s+=hit(x,bw,'<b>'+t.yearw+' '+i+'</b><br>'+t.ct+': '+sh(R.con[i])+'<br>'+t.gr+': '+sh(gs[i]))}
+ return svg(s)}
+function c4(R){var t=T(),N=R.N,bars=[],mx=1,base=R.bal[N];
+ [-4,-2,0,2,4].forEach(function(d){var r=S.r+d;if(r>=0.5){var v=sm({r:r}).bal[N];bars.push({r:r,v:v,d:d});mx=Math.max(mx,v)}});
+ mx*=1.12;var n=bars.length,bw=pw/n,s=ax(mx,0);
+ bars.forEach(function(b,i){var x=PL+i*bw,h=b.v/mx*ph,y=PT+ph-h;
+  s+='<rect x="'+(x+bw*.2).toFixed(1)+'" y="'+y.toFixed(1)+'" width="'+(bw*.6).toFixed(1)+'" height="'+h.toFixed(1)+'" rx="3" fill="'+(b.d===0?'var(--gold)':'var(--green)')+'"/><text x="'+(x+bw/2).toFixed(1)+'" y="'+(y-3).toFixed(1)+'" text-anchor="middle" font-size="9" font-weight="600" fill="var(--ink)">'+ay(b.v)+'</text><text x="'+(x+bw/2).toFixed(1)+'" y="'+(H-8)+'" text-anchor="middle" font-size="10" fill="var(--muted)">'+num(b.r,1)+'%</text>';
+  s+=hit(x,bw,'<b>'+num(b.r,1)+'%</b><br>'+t.val+': '+sh(b.v)+(b.d?'<br>'+(b.v>=base?'+':'')+sh(b.v-base):''))});
+ return svg(s)}
+function c5(R,RB){var t=T(),N=R.N,s,i;
+ if(S.inf){var mx=R.bal[N]*1.02||1,X=function(i){return PL+i/N*pw},Y=function(v){return PT+ph-v/mx*ph},a=[],b=[];
+  for(i=0;i<=N;i++){a.push(X(i).toFixed(1)+','+Y(R.bal[i]).toFixed(1));b.push(X(i).toFixed(1)+','+Y(RB[i]).toFixed(1))}
+  s=ax(mx,N)+'<polyline fill="none" stroke="var(--green)" stroke-width="2.4" stroke-linejoin="round" points="'+a.join(' ')+'"/><polyline fill="none" stroke="var(--gold)" stroke-width="2.4" stroke-linejoin="round" points="'+b.join(' ')+'"/>';
+  var w=pw/N;for(i=0;i<=N;i++)s+=hit(Math.max(PL,X(i)-w/2),w,'<b>'+t.yearw+' '+i+'</b><br>'+t.nom+': '+sh(R.bal[i])+'<br>'+t.rl+': '+sh(RB[i])+'<br>'+t.loss+': '+sh(R.bal[i]-RB[i]));
+  return svg(s)+leg([['var(--green)',t.nom],['var(--gold)',t.rl]])}
+ var TG=[5e5,1e6,2.5e6,5e6,1e7,2.5e7,5e7,1e8,2.5e8,5e8,1e9],ms=[];
+ TG.forEach(function(g){if(g>R.mo[0]&&ms.length<6){for(var m=0;m<R.mo.length;m++)if(R.mo[m]>=g){ms.push({g:g,y:m/12});break}}});
+ if(!ms.length)return svg('<text x="170" y="90" text-anchor="middle" font-size="12" fill="var(--muted)">'+t.nomile+'</text>');
+ var my=Math.max(1,N)*1.1,bw=pw/ms.length;s=ax(my,0,0,function(v){return num(v,0)});
+ ms.forEach(function(q,i){var x=PL+i*bw,h=q.y/my*ph,y=PT+ph-h;
+  s+='<rect x="'+(x+bw*.2).toFixed(1)+'" y="'+y.toFixed(1)+'" width="'+(bw*.6).toFixed(1)+'" height="'+h.toFixed(1)+'" rx="3" fill="var(--green)"/><text x="'+(x+bw/2).toFixed(1)+'" y="'+(y-3).toFixed(1)+'" text-anchor="middle" font-size="9" font-weight="600" fill="var(--ink)">'+num(q.y,1)+'</text><text x="'+(x+bw/2).toFixed(1)+'" y="'+(H-8)+'" text-anchor="middle" font-size="10" fill="var(--muted)">'+ay(q.g)+'</text>';
+  s+=hit(x,bw,'<b>'+sh(q.g)+'</b><br>'+t.reach+' '+num(q.y,1)+' '+t.yrs)});
+ return svg(s)}
+
+function advice(R){var t=T(),N=R.N,mat=R.bal[N],A=[],r2=Math.max(0.5,S.r-2),v2=sm({r:r2}).bal[N];
+ A.push(fill(S.r>15?t.a1h:t.a1n,{r:num(S.r,1),r2:num(r2,1),v2:sh(v2)}));
+ if(N<5)A.push(t.a2s);else A.push(fill(t.a2l,{s:num((mat-R.inv[N])/mat*100,0)}));
+ if(N>3){var c=sm({n:N-2}).bal[N-2];A.push(fill(t.a3,{v:sh(c),d:sh(mat-c)}))}
+ if(!S.step){var u=sm({step:true,st:'pct',sv:10}).bal[N];A.push(fill(t.a4n,{v:sh(u),d:sh(u-mat)}))}
+ else{var fl=sm({step:false}).bal[N];A.push(fill(t.a4y,{d:sh(mat-fl),lp:sh(R.last)}))}
+ if(S.inf){var rv=mat/Math.pow(1+S.f/100,N);A.push(fill(t.a5y,{f:num(S.f,1),v:sh(mat),rv:sh(rv),q:num(rv/mat*100,0)}))}else A.push(t.a5n);
+ A.push(t.a6);return A}
+
+function out(){var t=T(),R=sm({}),N=R.N,mat=R.bal[N],inv=R.inv[N],RB=R.bal.map(function(v,i){return v/Math.pow(1+S.f/100,i)}),h;
+ h='<div class="big"><span>'+t.mat+'</span><b>'+sh(mat)+'</b><small>'+full(mat)+'</small></div><div class="stats"><div><span>'+t.inv+'</span><b>'+sh(inv)+'</b></div><div class="g"><span>'+t.ret+'</span><b>'+sh(mat-inv)+'</b></div>';
+ if(S.inf)h+='<div><span>'+t.real+'</span><b>'+sh(RB[N])+'</b></div>';
+ if(S.step)h+='<div><span>'+t.lastp+'</span><b>'+sh(R.last)+'</b></div>';
+ h+='</div><p class="hint">'+t.hint+'</p>';
+ h+='<div class="cc"><h3 class="cap">'+t.c1+'</h3>'+c1(R,RB)+leg([['var(--green)',t.inv],['var(--gold)',t.ret]])+'</div>';
+ h+='<div class="cc"><h3 class="cap">'+t.c2+'</h3>'+c2(R)+'</div>';
+ h+='<div class="cc"><h3 class="cap">'+t.c3+'</h3>'+c3(R)+leg([['var(--green)',t.ct],['var(--gold)',t.gr]])+'</div>';
+ h+='<div class="cc"><h3 class="cap">'+t.c4+'</h3>'+c4(R)+'</div>';
+ h+='<div class="cc"><h3 class="cap">'+(S.inf?t.c5a:t.c5b)+'</h3>'+c5(R,RB)+'</div>';
+ h+='<div class="adv"><h3 class="cap">'+t.advh+'</h3><ul>'+advice(R).map(function(a){return '<li>'+a+'</li>'}).join('')+'</ul></div>';
+ document.getElementById('out').innerHTML=h}
+
+function fld(k,label,step,unit,sl){var L=lim(k);return '<div class="fld"><div class="fh"><label for="i-'+k+'">'+label+'</label><span class="fv"><input id="i-'+k+'" type="number" inputmode="decimal" min="'+L[0]+'" max="'+L[1]+'" step="'+step+'" value="'+S[k]+'" data-k="'+k+'"><em>'+unit+'</em></span></div>'+(sl?'<input type="range" class="rg" aria-label="'+label+'" min="'+sl[0]+'" max="'+sl[1]+'" step="'+step+'" value="'+S[k]+'" data-k="'+k+'">':'')+'</div>'}
+function inputs(){var t=T();
+ return '<div class="seg" role="group"><button type="button" data-inf="0" aria-pressed="'+!S.inf+'">'+t.mode0+'</button><button type="button" data-inf="1" aria-pressed="'+S.inf+'">'+t.mode1+'</button></div>'+
+ (S.inf?fld('f',t.f,0.5,'%',[0,20]):'')+fld('p',t.p,500,'৳',[500,100000])+fld('l',t.l,1000,'৳')+fld('r',t.r,0.5,'%',[1,30])+fld('n',t.n,1,t.yr,[1,40])+
+ '<label class="sw"><input type="checkbox" id="stp" role="switch"'+(S.step?' checked':'')+'><span class="trk"></span>'+t.step+'</label>'+
+ (S.step?'<div class="sub"><div class="seg" role="group"><button type="button" data-st="pct" aria-pressed="'+(S.st==='pct')+'">'+t.st0+'</button><button type="button" data-st="amt" aria-pressed="'+(S.st==='amt')+'">'+t.st1+'</button></div>'+fld('sv',t.sv,S.st==='pct'?1:100,S.st==='pct'?'%':'৳')+'</div>':'')}
+function buildInp(){document.getElementById('inp').innerHTML=inputs()}
+function i18n(){var t=T();document.documentElement.lang=lang;document.title=t.title+' | Financial Mindset';document.getElementById('h1').textContent=t.title;document.getElementById('sub').textContent=t.sub;document.getElementById('foot').textContent='© Financial Mindset · '+t.foot;
+ document.querySelectorAll('.lang button').forEach(function(b){b.setAttribute('aria-pressed',b.dataset.l===lang)});buildInp();out()}
+
+var inp=document.getElementById('inp'),tip=document.getElementById('tip');
+inp.addEventListener('input',function(e){var el=e.target,k=el.dataset.k;if(!k)return;var v=parseFloat(el.value);if(isNaN(v))return;var L=lim(k);S[k]=Math.min(L[1],Math.max(L[0],v));
+ if(k==='f'&&!S.inf){S.inf=true;inp.querySelectorAll('[data-inf]').forEach(function(b){b.setAttribute('aria-pressed',b.dataset.inf==='1')});var wf=inp.querySelector('.inf');if(wf)wf.classList.remove('off')}
+ inp.querySelectorAll('[data-k="'+k+'"]').forEach(function(o){if(o!==el)o.value=S[k]});out()});
+inp.addEventListener('focusout',function(e){var k=e.target.dataset&&e.target.dataset.k;if(k&&e.target.type==='number')e.target.value=S[k]});
+inp.addEventListener('change',function(e){if(e.target.id==='stp'){S.step=e.target.checked;buildInp();out()}});
+inp.addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;
+ if(b.dataset.inf!=null)S.inf=b.dataset.inf==='1';else if(b.dataset.st){S.st=b.dataset.st;S.sv=S.st==='pct'?10:1000}else return;buildInp();out()});
+document.querySelectorAll('.lang button').forEach(function(b){b.addEventListener('click',function(){lang=b.dataset.l;try{localStorage.setItem('fm-lang',lang)}catch(e){}i18n()})});
+function showTip(e){var el=e.target.closest&&e.target.closest('[data-tip]');if(!el){tip.style.opacity=0;return}
+ tip.innerHTML=el.getAttribute('data-tip');tip.style.opacity=1;var w=tip.offsetWidth,hh=tip.offsetHeight;
+ tip.style.left=Math.min(window.innerWidth-w-8,Math.max(8,e.clientX+12))+'px';tip.style.top=Math.max(8,e.clientY-hh-12)+'px'}
+document.addEventListener('pointermove',showTip);document.addEventListener('pointerdown',showTip);
+document.addEventListener('scroll',function(){tip.style.opacity=0},{passive:true});
+i18n();
+</script>
+</body>
+</html>
