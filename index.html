@@ -53,6 +53,26 @@ html[lang="bn"] .hero h1{font-family:"Noto Sans Bengali",sans-serif;font-weight:
 .sw input:checked+.trk::after{transform:translateX(18px)}
 .sw input:focus-visible+.trk{outline:2px solid var(--gold);outline-offset:3px}
 .inf.off{opacity:.55}
+.fv input[data-m]{width:112px}
+.wd{text-align:right;font-size:13px;color:var(--green-2);margin:-6px 0 10px;min-height:1.3em;font-weight:500}
+.mdx{margin-top:12px;font-size:14px;color:var(--muted);line-height:1.55;padding:10px 12px;border-left:3px solid var(--gold);background:var(--tint);border-radius:0 10px 10px 0}
+.mdx b{color:var(--green)}
+.ibox{margin-top:14px;border:1px solid var(--line);border-radius:14px;padding:16px;background:var(--tint)}
+.icols{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:8px}
+.ic{border-radius:12px;padding:12px 14px;background:var(--surface);border:1px solid var(--line)}
+.ic.r{border-color:var(--gold);background:var(--gold-soft)}
+.ic span{display:block;font-size:13px;color:var(--muted)}
+.ic b{display:block;font-size:20px;line-height:1.35}
+.ic small{display:block;color:var(--muted);font-size:12px;line-height:1.4;margin-top:2px}
+.pbar{height:12px;border-radius:7px;background:var(--gold);overflow:hidden;margin-top:16px}
+.pbar i{display:block;height:100%;background:var(--green);border-radius:7px 0 0 7px}
+.pcap{display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;font-size:13px;color:var(--muted);margin-top:6px}
+.pcap b{color:var(--ink)}
+.isent{margin:12px 0 0;font-size:15px}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.chips span{border:1px solid var(--line);border-radius:999px;padding:3px 12px;font-size:13px;background:var(--surface);color:var(--muted)}
+.chips b{color:var(--ink)}
+@media (max-width:420px){.icols{grid-template-columns:1fr}}
 .sub{margin-top:6px;padding:14px;border:1px solid var(--line);border-radius:12px;background:var(--tint)}
 .sub .fld{margin-top:16px}
 .big{background:var(--green);color:var(--bg);border-radius:12px;padding:18px 20px}
@@ -100,11 +120,11 @@ footer{border-top:1px solid var(--line);padding:20px 0 28px;color:var(--muted);f
  <section class="hero"><h1 id="h1"></h1><div class="rule"></div><p id="sub"></p></section>
  <div class="layout"><aside class="panel" id="inp"></aside><section class="panel" id="out" aria-live="polite"></section></div>
 </main>
-<footer><div class="wrap fw"><span id="foot"></span><span class="soc"><a href="https://www.facebook.com/FinancialMindset101" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.5 21v-8h2.7l.4-3.2h-3.1V7.8c0-.9.3-1.5 1.6-1.5h1.7V3.4c-.3 0-1.3-.1-2.4-.1-2.4 0-4 1.5-4 4.1v2.4H7.6V13h2.8v8h3.1z"/></svg>Facebook</a><a href="https://www.youtube.com/@engr.saddam43" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21.6 7.2a2.5 2.5 0 0 0-1.8-1.8C18.3 5 12 5 12 5s-6.3 0-7.8.4A2.5 2.5 0 0 0 2.4 7.2C2 8.7 2 12 2 12s0 3.3.4 4.8a2.5 2.5 0 0 0 1.8 1.8C5.7 19 12 19 12 19s6.3 0 7.8-.4a2.5 2.5 0 0 0 1.8-1.8c.4-1.5.4-4.8.4-4.8s0-3.3-.4-4.8zM10 15V9l5.2 3L10 15z"/></svg>YouTube</a></span></div></footer>
+<footer><div class="wrap fw"><span id="foot"></span><span class="soc"><a href="https://www.facebook.com/FinancialMindset101" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.5 21v-8h2.7l.4-3.2h-3.1V7.8c0-.9.3-1.5 1.6-1.5h1.7V3.4c-.3 0-1.3-.1-2.4-.1-2.4 0-4 1.5-4 4.1v2.4H7.6V13h2.8v8h3.1z"/></svg>Facebook</a><a href="https://www.youtube.com/@engr.saddam43" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21.6 7.2a2.5 2.5 0 0 0-1.8-1.8C18.3 5 12 5 12 5s-6.3 0-7.8.4A2.5 2.5 0 0 0 2.4 7.2C2 8.7 2 12 2 12s0 3.3.4 4.8a2.5 2.5 0 0 0 1.8 1.8C5.7 19 12 19 12 19s6.3 0 7.8-.4a2.5 2.5 0 0 0 1.8-1.8c.4-1.5.4-4.8.4-4.8s0-3.3-.4-4.8zM10 15V9l5.2 3L10 15z"/></svg>YouTube</a><a href="https://github.com/EngrSaddam" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49v-1.72c-2.78.62-3.37-1.37-3.37-1.37-.45-1.18-1.11-1.5-1.11-1.5-.91-.64.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.89 1.57 2.34 1.12 2.91.86.09-.66.35-1.12.64-1.38-2.22-.26-4.56-1.14-4.56-5.06 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.28 2.75 1.05A9.4 9.4 0 0 1 12 6.84c.85 0 1.71.12 2.51.35 1.91-1.33 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.93-2.34 4.8-4.57 5.05.36.32.68.94.68 1.9v2.81c0 .27.18.59.69.49A10.26 10.26 0 0 0 22 12.25C22 6.58 17.52 2 12 2z"/></svg>GitHub</a></span></div></footer>
 <div id="tip" role="tooltip"></div>
 <script>
 var D={
-en:{title:'SIP Calculator',sub:'Plan your monthly investment and see what it can grow into. Amounts in BDT (৳).',mode0:'Without inflation',mode1:'With inflation',p:'Monthly SIP',l:'Initial investment (optional)',r:'Expected annual return',n:'Time period',yr:'years',step:'Increase SIP every year',st0:'By %',st1:'By amount',sv:'Yearly increase',f:'Expected inflation rate',mat:'Maturity value',inv:'Total invested',ret:'Estimated returns',real:'Value in today’s money',lastp:'Monthly SIP in final year',cr:'Crore',lk:'Lakh',crs:'Cr',lks:'L',ks:'K',yearw:'Year',val:'Value',c1:'Wealth growth',c2:'Invested vs returns',c3:'Yearly investment and growth',c4:'If the return rate changes',c5a:'Nominal vs real value',c5b:'Years to reach milestones',advh:'Advice on your result',hint:'Hover or tap any chart for details.',nom:'Nominal value',rl:'Real value',ct:'Invested',gr:'Growth',reach:'Reached in',yrs:'years',nomile:'No milestone is reached in this period.',loss:'Buying power lost',foot:'For education only. Not financial advice.',
+en:{th:'Thousand',x0:'Shows the future amount in plain taka. It does not adjust for rising prices, so it will look bigger than what it can actually buy.',x1:'Adjusts the future amount for rising prices. You see the amount in your account and what it is worth in today’s money, which is its real buying power.',ib:'Inflation impact',nl:'Future value (nominal)',rl2:'Worth in today’s money (real)',nd:'Amount in your account after {n} years',rd:'What it can buy at today’s prices',kept:'Buying power kept',lost:'Lost to inflation',is:'After {n} years, {v} will buy only what {rv} buys today, assuming {f}% yearly inflation.',cr1:'Expected return',cr2:'Inflation',cr3:'Real return',title:'SIP Calculator',sub:'Plan your monthly investment and see what it can grow into. Amounts in BDT (৳).',mode0:'Without inflation',mode1:'With inflation',p:'Monthly SIP',l:'Initial investment (optional)',r:'Expected annual return',n:'Time period',yr:'years',step:'Increase SIP every year',st0:'By %',st1:'By amount',sv:'Yearly increase',f:'Expected inflation rate',mat:'Maturity value',inv:'Total invested',ret:'Estimated returns',real:'Value in today’s money',lastp:'Monthly SIP in final year',cr:'Crore',lk:'Lakh',crs:'Cr',lks:'L',ks:'K',yearw:'Year',val:'Value',c1:'Wealth growth',c2:'Invested vs returns',c3:'Yearly investment and growth',c4:'If the return rate changes',c5a:'Nominal vs real value',c5b:'Years to reach milestones',advh:'Advice on your result',hint:'Hover or tap any chart for details.',nom:'Nominal value',rl:'Real value',ct:'Invested',gr:'Growth',reach:'Reached in',yrs:'years',nomile:'No milestone is reached in this period.',loss:'Buying power lost',foot:'For education only. Not financial advice.',
 a1h:'A {r}% yearly return is ambitious to sustain for long. Treat it as a best case; at {r2}% you would reach about {v2}.',
 a1n:'{r}% is a reasonable planning figure, but real returns are uneven. At {r2}% (two points lower) you would still reach about {v2}.',
 a2s:'With under 5 years, market swings can hurt badly. Share-based SIPs usually suit 7 years or more.',
@@ -115,7 +135,7 @@ a4y:'Your yearly step-up adds about {d} compared with a flat SIP. In the final y
 a5y:'After {f}% inflation, {v} at maturity buys about what {rv} buys today ({q}% of the nominal amount).',
 a5n:'Switch to “With inflation” to see what this amount is worth in today’s money.',
 a6:'This is an estimate, not a guarantee or financial advice. Keep an emergency fund first and choose investments that match your risk.'},
-bn:{title:'এসআইপি ক্যালকুলেটর',sub:'মাসিক বিনিয়োগের পরিকল্পনা করুন এবং দেখুন তা কতটা বাড়তে পারে। সব অঙ্ক টাকায় (৳)।',mode0:'মূল্যস্ফীতি ছাড়া',mode1:'মূল্যস্ফীতিসহ',p:'মাসিক এসআইপি',l:'প্রাথমিক বিনিয়োগ (ঐচ্ছিক)',r:'প্রত্যাশিত বার্ষিক রিটার্ন',n:'সময়কাল',yr:'বছর',step:'প্রতি বছর এসআইপি বাড়ান',st0:'শতাংশে',st1:'টাকায়',sv:'বার্ষিক বৃদ্ধি',f:'প্রত্যাশিত মূল্যস্ফীতি',mat:'মেয়াদ শেষে মোট মূল্য',inv:'মোট বিনিয়োগ',ret:'আনুমানিক রিটার্ন',real:'আজকের মূল্যে',lastp:'শেষ বছরে মাসিক এসআইপি',cr:'কোটি',lk:'লক্ষ',crs:'কো',lks:'ল',ks:'হা',yearw:'বছর',val:'মূল্য',c1:'সম্পদের প্রবৃদ্ধি',c2:'বিনিয়োগ ও রিটার্নের অনুপাত',c3:'বছরভিত্তিক বিনিয়োগ ও প্রবৃদ্ধি',c4:'রিটার্নের হার বদলালে',c5a:'নামমাত্র ও প্রকৃত মূল্য',c5b:'লক্ষ্যমাত্রা ছুঁতে কত বছর',advh:'আপনার ফলাফল নিয়ে পরামর্শ',hint:'বিস্তারিত দেখতে যেকোনো চার্টের উপর হোভার করুন বা ট্যাপ করুন।',nom:'নামমাত্র মূল্য',rl:'প্রকৃত মূল্য',ct:'বিনিয়োগ',gr:'প্রবৃদ্ধি',reach:'পৌঁছাতে সময়',yrs:'বছর',nomile:'এই সময়ে কোনো লক্ষ্যমাত্রা ছোঁয়া যাচ্ছে না।',loss:'ক্রয়ক্ষমতা হ্রাস',foot:'শুধু শিক্ষামূলক উদ্দেশ্যে। আর্থিক পরামর্শ নয়।',
+bn:{th:'হাজার',x0:'ভবিষ্যতের অঙ্কটি সাধারণ টাকায় দেখায়। দাম বাড়ার হিসাব ধরে না, তাই অঙ্কটি আসল ক্রয়ক্ষমতার চেয়ে বড় দেখায়।',x1:'দাম বাড়ার হিসাব ধরে ভবিষ্যতের অঙ্ক সমন্বয় করে। আপনার হাতে থাকা অঙ্ক এবং আজকের মূল্যে তার মান, অর্থাৎ প্রকৃত ক্রয়ক্ষমতা, দুটোই দেখতে পাবেন।',ib:'মূল্যস্ফীতির প্রভাব',nl:'ভবিষ্যৎ মূল্য (নামমাত্র)',rl2:'আজকের মূল্যে (প্রকৃত)',nd:'{n} বছর পর আপনার হাতে থাকা অঙ্ক',rd:'আজকের দামে এর ক্রয়ক্ষমতা',kept:'অটুট ক্রয়ক্ষমতা',lost:'মূল্যস্ফীতিতে হারানো',is:'{n} বছর পর {v} দিয়ে ততটুকুই কেনা যাবে, যতটুকু আজ {rv} দিয়ে কেনা যায় (বার্ষিক মূল্যস্ফীতি {f}% ধরে)।',cr1:'প্রত্যাশিত রিটার্ন',cr2:'মূল্যস্ফীতি',cr3:'প্রকৃত রিটার্ন',title:'এসআইপি ক্যালকুলেটর',sub:'মাসিক বিনিয়োগের পরিকল্পনা করুন এবং দেখুন তা কতটা বাড়তে পারে। সব অঙ্ক টাকায় (৳)।',mode0:'মূল্যস্ফীতি ছাড়া',mode1:'মূল্যস্ফীতিসহ',p:'মাসিক এসআইপি',l:'প্রাথমিক বিনিয়োগ (ঐচ্ছিক)',r:'প্রত্যাশিত বার্ষিক রিটার্ন',n:'সময়কাল',yr:'বছর',step:'প্রতি বছর এসআইপি বাড়ান',st0:'শতাংশে',st1:'টাকায়',sv:'বার্ষিক বৃদ্ধি',f:'প্রত্যাশিত মূল্যস্ফীতি',mat:'মেয়াদ শেষে মোট মূল্য',inv:'মোট বিনিয়োগ',ret:'আনুমানিক রিটার্ন',real:'আজকের মূল্যে',lastp:'শেষ বছরে মাসিক এসআইপি',cr:'কোটি',lk:'লক্ষ',crs:'কো',lks:'ল',ks:'হা',yearw:'বছর',val:'মূল্য',c1:'সম্পদের প্রবৃদ্ধি',c2:'বিনিয়োগ ও রিটার্নের অনুপাত',c3:'বছরভিত্তিক বিনিয়োগ ও প্রবৃদ্ধি',c4:'রিটার্নের হার বদলালে',c5a:'নামমাত্র ও প্রকৃত মূল্য',c5b:'লক্ষ্যমাত্রা ছুঁতে কত বছর',advh:'আপনার ফলাফল নিয়ে পরামর্শ',hint:'বিস্তারিত দেখতে যেকোনো চার্টের উপর হোভার করুন বা ট্যাপ করুন।',nom:'নামমাত্র মূল্য',rl:'প্রকৃত মূল্য',ct:'বিনিয়োগ',gr:'প্রবৃদ্ধি',reach:'পৌঁছাতে সময়',yrs:'বছর',nomile:'এই সময়ে কোনো লক্ষ্যমাত্রা ছোঁয়া যাচ্ছে না।',loss:'ক্রয়ক্ষমতা হ্রাস',foot:'শুধু শিক্ষামূলক উদ্দেশ্যে। আর্থিক পরামর্শ নয়।',
 a1h:'বছরে {r}% রিটার্ন দীর্ঘমেয়াদে ধরে রাখা কঠিন। এটাকে সর্বোত্তম পরিস্থিতি ভাবুন; {r2}% হলে মোট প্রায় {v2} হবে।',
 a1n:'{r}% একটি যুক্তিসঙ্গত ধারণা, তবে বাস্তবে রিটার্ন সবসময় সমান থাকে না। রিটার্ন ২ শতাংশ কম হলে ({r2}%) আপনি প্রায় {v2} পাবেন।',
 a2s:'৫ বছরের কম সময়ে বাজারের ওঠানামায় বড় ক্ষতি হতে পারে। শেয়ারভিত্তিক এসআইপি সাধারণত ৭ বছর বা বেশি সময়ের জন্য ভালো।',
@@ -205,9 +225,9 @@ function advice(R){var t=T(),N=R.N,mat=R.bal[N],A=[],r2=Math.max(0.5,S.r-2),v2=s
 
 function out(){var t=T(),R=sm({}),N=R.N,mat=R.bal[N],inv=R.inv[N],RB=R.bal.map(function(v,i){return v/Math.pow(1+S.f/100,i)}),h;
  h='<div class="big"><span>'+t.mat+'</span><b>'+sh(mat)+'</b><small>'+full(mat)+'</small></div><div class="stats"><div><span>'+t.inv+'</span><b>'+sh(inv)+'</b></div><div class="g"><span>'+t.ret+'</span><b>'+sh(mat-inv)+'</b></div>';
- if(S.inf)h+='<div><span>'+t.real+'</span><b>'+sh(RB[N])+'</b></div>';
+ 
  if(S.step)h+='<div><span>'+t.lastp+'</span><b>'+sh(R.last)+'</b></div>';
- h+='</div><p class="hint">'+t.hint+'</p>';
+ h+='</div>'+(S.inf?ibox(R,RB):'')+'<p class="hint">'+t.hint+'</p>';
  h+='<div class="cc"><h3 class="cap">'+t.c1+'</h3>'+c1(R,RB)+leg([['var(--green)',t.inv],['var(--gold)',t.ret]])+'</div>';
  h+='<div class="cc"><h3 class="cap">'+t.c2+'</h3>'+c2(R)+'</div>';
  h+='<div class="cc"><h3 class="cap">'+t.c3+'</h3>'+c3(R)+leg([['var(--green)',t.ct],['var(--gold)',t.gr]])+'</div>';
@@ -216,21 +236,31 @@ function out(){var t=T(),R=sm({}),N=R.N,mat=R.bal[N],inv=R.inv[N],RB=R.bal.map(f
  h+='<div class="adv"><h3 class="cap">'+t.advh+'</h3><ul>'+advice(R).map(function(a){return '<li>'+a+'</li>'}).join('')+'</ul></div>';
  document.getElementById('out').innerHTML=h}
 
-function fld(k,label,step,unit,sl){var L=lim(k);return '<div class="fld"><div class="fh"><label for="i-'+k+'">'+label+'</label><span class="fv"><input id="i-'+k+'" type="number" inputmode="decimal" min="'+L[0]+'" max="'+L[1]+'" step="'+step+'" value="'+S[k]+'" data-k="'+k+'"><em>'+unit+'</em></span></div>'+(sl?'<input type="range" class="rg" aria-label="'+label+'" min="'+sl[0]+'" max="'+sl[1]+'" step="'+step+'" value="'+S[k]+'" data-k="'+k+'">':'')+'</div>'}
+function fld(k,label,step,unit,sl,mon){var L=lim(k);if(mon)return fldm(k,label,step,unit,sl);return '<div class="fld"><div class="fh"><label for="i-'+k+'">'+label+'</label><span class="fv"><input id="i-'+k+'" type="number" inputmode="decimal" min="'+L[0]+'" max="'+L[1]+'" step="'+step+'" value="'+S[k]+'" data-k="'+k+'"><em>'+unit+'</em></span></div>'+(sl?'<input type="range" class="rg" aria-label="'+label+'" min="'+sl[0]+'" max="'+sl[1]+'" step="'+step+'" value="'+S[k]+'" data-k="'+k+'">':'')+'</div>'}
+function fmtIn(n){return Math.round(n).toLocaleString('en-IN')}
+function dv(o,v){return o.dataset.m?fmtIn(v):v}
+function words(n){var t=T();if(n>=1e5)return sh(n);if(n>=1e3)return '৳'+num(n/1e3,2)+' '+t.th;return ''}
+function fldm(k,label,step,unit,sl){return '<div class="fld"><div class="fh"><label for="i-'+k+'">'+label+'</label><span class="fv"><em>'+unit+'</em><input id="i-'+k+'" type="text" inputmode="numeric" autocomplete="off" value="'+fmtIn(S[k])+'" data-k="'+k+'" data-m="1"></span></div><div class="wd" id="w-'+k+'">'+words(S[k])+'</div>'+(sl?'<input type="range" class="rg" aria-label="'+label+'" min="'+sl[0]+'" max="'+sl[1]+'" step="'+step+'" value="'+S[k]+'" data-k="'+k+'">':'')+'</div>'}
+function fixMoney(el,raw){var pos=el.selectionStart==null?raw.length:el.selectionStart,db=raw.slice(0,pos).replace(/\D/g,'').length,d=raw.replace(/\D/g,''),n=d?parseInt(d,10):0;el.value=d?fmtIn(n):'';var c=0,i=0;while(i<el.value.length&&c<db){if(/\d/.test(el.value[i]))c++;i++}try{el.setSelectionRange(i,i)}catch(e){}return n}
+function ibox(R,RB){var t=T(),N=R.N,mat=R.bal[N],rv=RB[N],kept=mat>0?rv/mat*100:100,rr=((1+S.r/100)/(1+S.f/100)-1)*100;
+ return '<div class="ibox"><h3 class="cap">'+t.ib+'</h3><div class="icols"><div class="ic"><span>'+t.nl+'</span><b>'+sh(mat)+'</b><small>'+fill(t.nd,{n:N})+'</small></div><div class="ic r"><span>'+t.rl2+'</span><b>'+sh(rv)+'</b><small>'+t.rd+'</small></div></div>'+
+ '<div class="pbar" role="img" aria-label="'+t.kept+' '+num(kept,0)+'%"><i style="width:'+kept.toFixed(1)+'%"></i></div><div class="pcap"><span>'+t.kept+': <b>'+num(kept,0)+'%</b></span><span>'+t.lost+': <b>'+num(100-kept,0)+'%</b> ('+sh(mat-rv)+')</span></div>'+
+ '<p class="isent">'+fill(t.is,{n:N,v:sh(mat),rv:sh(rv),f:num(S.f,1)})+'</p>'+
+ '<div class="chips"><span>'+t.cr1+': <b>'+num(S.r,1)+'%</b></span><span>'+t.cr2+': <b>'+num(S.f,1)+'%</b></span><span>'+t.cr3+': <b>'+num(rr,1)+'%</b></span></div></div>'}
 function inputs(){var t=T();
- return '<div class="seg" role="group"><button type="button" data-inf="0" aria-pressed="'+!S.inf+'">'+t.mode0+'</button><button type="button" data-inf="1" aria-pressed="'+S.inf+'">'+t.mode1+'</button></div>'+
- (S.inf?fld('f',t.f,0.5,'%',[0,20]):'')+fld('p',t.p,500,'৳',[500,100000])+fld('l',t.l,1000,'৳')+fld('r',t.r,0.5,'%',[1,30])+fld('n',t.n,1,t.yr,[1,40])+
+ return '<div class="seg" role="group"><button type="button" data-inf="0" aria-pressed="'+!S.inf+'">'+t.mode0+'</button><button type="button" data-inf="1" aria-pressed="'+S.inf+'">'+t.mode1+'</button></div><div class="mdx"><b>'+(S.inf?t.mode1:t.mode0)+'</b>: '+(S.inf?t.x1:t.x0)+'</div>'+
+ (S.inf?fld('f',t.f,0.5,'%',[0,20]):'')+fld('p',t.p,500,'৳',[500,100000],1)+fld('l',t.l,1000,'৳',0,1)+fld('r',t.r,0.5,'%',[1,30])+fld('n',t.n,1,t.yr,[1,40])+
  '<label class="sw"><input type="checkbox" id="stp" role="switch"'+(S.step?' checked':'')+'><span class="trk"></span>'+t.step+'</label>'+
- (S.step?'<div class="sub"><div class="seg" role="group"><button type="button" data-st="pct" aria-pressed="'+(S.st==='pct')+'">'+t.st0+'</button><button type="button" data-st="amt" aria-pressed="'+(S.st==='amt')+'">'+t.st1+'</button></div>'+fld('sv',t.sv,S.st==='pct'?1:100,S.st==='pct'?'%':'৳')+'</div>':'')}
+ (S.step?'<div class="sub"><div class="seg" role="group"><button type="button" data-st="pct" aria-pressed="'+(S.st==='pct')+'">'+t.st0+'</button><button type="button" data-st="amt" aria-pressed="'+(S.st==='amt')+'">'+t.st1+'</button></div>'+fld('sv',t.sv,S.st==='pct'?1:100,S.st==='pct'?'%':'৳',0,S.st!=='pct')+'</div>':'')}
 function buildInp(){document.getElementById('inp').innerHTML=inputs()}
 function i18n(){var t=T();document.documentElement.lang=lang;document.title=t.title+' | Financial Mindset';document.getElementById('h1').textContent=t.title;document.getElementById('sub').textContent=t.sub;document.getElementById('foot').textContent='© Financial Mindset · '+t.foot;
  document.querySelectorAll('.lang button').forEach(function(b){b.setAttribute('aria-pressed',b.dataset.l===lang)});buildInp();out()}
 
 var inp=document.getElementById('inp'),tip=document.getElementById('tip');
-inp.addEventListener('input',function(e){var el=e.target,k=el.dataset.k;if(!k)return;var v=parseFloat(el.value);if(isNaN(v))return;var L=lim(k);S[k]=Math.min(L[1],Math.max(L[0],v));
+inp.addEventListener('input',function(e){var el=e.target,k=el.dataset.k;if(!k)return;var raw=el.value,v;if(el.dataset.m){v=fixMoney(el,raw);var w=document.getElementById('w-'+k);if(w)w.textContent=words(v)}else{v=parseFloat(raw);if(isNaN(v))return}var L=lim(k);S[k]=Math.min(L[1],Math.max(L[0],v));
  if(k==='f'&&!S.inf){S.inf=true;inp.querySelectorAll('[data-inf]').forEach(function(b){b.setAttribute('aria-pressed',b.dataset.inf==='1')});var wf=inp.querySelector('.inf');if(wf)wf.classList.remove('off')}
- inp.querySelectorAll('[data-k="'+k+'"]').forEach(function(o){if(o!==el)o.value=S[k]});out()});
-inp.addEventListener('focusout',function(e){var k=e.target.dataset&&e.target.dataset.k;if(k&&e.target.type==='number')e.target.value=S[k]});
+ inp.querySelectorAll('[data-k="'+k+'"]').forEach(function(o){if(o!==el)o.value=dv(o,S[k]);var w3=document.getElementById('w-'+k);if(w3&&!el.dataset.m)w3.textContent=words(S[k])});out()});
+inp.addEventListener('focusout',function(e){var k=e.target.dataset&&e.target.dataset.k;if(k&&(e.target.type==='number'||e.target.dataset.m)){e.target.value=dv(e.target,S[k]);var w2=document.getElementById('w-'+k);if(w2)w2.textContent=words(S[k])}});
 inp.addEventListener('change',function(e){if(e.target.id==='stp'){S.step=e.target.checked;buildInp();out()}});
 inp.addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;
  if(b.dataset.inf!=null)S.inf=b.dataset.inf==='1';else if(b.dataset.st){S.st=b.dataset.st;S.sv=S.st==='pct'?10:1000}else return;buildInp();out()});
